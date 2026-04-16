@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
     FiArrowLeft, FiUsers, FiAward, FiClipboard,
-    FiCheckCircle, FiClock, FiAlertCircle, FiUser,
-    FiLink, FiStar, FiBarChart2
+    FiCheckCircle, FiClock,
+    FiLink, FiStar
 } from 'react-icons/fi';
 import { courseService } from '../../services/courseService';
 import { quizService } from '../../services/quizService';
@@ -26,6 +26,7 @@ const CourseReports = () => {
 
     useEffect(() => {
         fetchCourseData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [courseId]);
 
     useEffect(() => {
@@ -33,6 +34,7 @@ const CourseReports = () => {
         if (activeTab === 'participants') fetchParticipants();
         if (activeTab === 'quiz') fetchQuizMarks();
         if (activeTab === 'tasks') fetchTaskSubmissions();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeTab, course]);
 
     const fetchCourseData = async () => {

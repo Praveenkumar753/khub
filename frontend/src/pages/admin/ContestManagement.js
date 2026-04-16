@@ -6,6 +6,7 @@ import Footer from '../../components/Footer';
 
 const ContestManagement = () => {
     const { contestId } = useParams();
+    // eslint-disable-next-line no-unused-vars
     const navigate = useNavigate();
     const [contest, setContest] = useState(null);
     const [participants, setParticipants] = useState([]);
@@ -16,6 +17,7 @@ const ContestManagement = () => {
 
     useEffect(() => {
         fetchContest();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [contestId]);
 
     const fetchContest = async () => {
@@ -539,6 +541,7 @@ const LeaderboardTab = ({ contestId, contest }) => {
 
     useEffect(() => {
         fetchLeaderboard();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [contestId]);
 
     const fetchLeaderboard = async () => {
