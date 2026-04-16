@@ -321,8 +321,8 @@ const CourseContent = () => {
                     </aside>
 
                     {/* Content Pane (Independent Scroll) */}
-                    <main className="flex-1 overflow-y-auto bg-white">
-                        <div className="max-w-5xl mx-auto p-8">
+                    <main className="flex-1 overflow-y-auto bg-white flex flex-col">
+                        <div className="flex-1 w-full max-w-5xl mx-auto p-8">
                             <div className="min-h-[60vh]">
                                 {selectedTopic ? (
                                     <div className="p-6 lg:p-8">
@@ -394,6 +394,10 @@ const CourseContent = () => {
                                     </div>
                                 )}
                             </div>
+                        </div>
+                        
+                        <div className="w-full mt-auto">
+                            <Footer />
                         </div>
                     </main>
                 </div>

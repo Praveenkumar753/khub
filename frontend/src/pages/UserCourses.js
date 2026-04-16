@@ -23,8 +23,13 @@ const UserCourses = () => {
     const [enrolledCourses, setEnrolledCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
-    const [activeTab, setActiveTab] = useState('all'); // all, enrolled, completed
+    const [activeTab, setActiveTab] = useState('all'); 
+    const [visibleCount, setVisibleCount] = useState(8);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setVisibleCount(8);
+    }, [searchTerm, activeTab]);
 
     useEffect(() => {
         fetchCourses();
@@ -135,15 +140,15 @@ const UserCourses = () => {
                     </div>
                 </div>
 
-                <div className="p-4 flex flex-col flex-1">
+                <div className="p-3.5 flex flex-col flex-1">
                     <h3 className="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
                         {course.title}
                     </h3>
-                    <p className="text-slate-500 text-[11px] line-clamp-2 mb-3 leading-relaxed">
+                    <p className="text-slate-500 text-[11px] line-clamp-2 mb-2 leading-relaxed">
                         {course.subtitle}
                     </p>
 
-                    <div className="flex items-center gap-3 mb-auto pb-3">
+                    <div className="flex items-center gap-3 mb-auto pb-2">
                         <div className="flex items-center text-slate-400 text-[11px] font-semibold">
                             <FiClock className="mr-1 text-blue-500" />
                             {course.duration}h
@@ -155,9 +160,9 @@ const UserCourses = () => {
                     </div>
 
                     {enrollment ? (
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             <div>
-                                <div className="flex justify-between items-center text-xs font-bold text-slate-400 mb-2">
+                                <div className="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5">
                                     <span className="flex items-center">
                                         <FiTrendingUp className="mr-1 text-green-500" />
                                         Progress
@@ -204,6 +209,8 @@ const UserCourses = () => {
     };
 
     const displayCourses = getDisplayCourses();
+    const paginatedCourses = displayCourses.slice(0, visibleCount);
+    const hasMore = paginatedCourses.length < displayCourses.length;
 
     return (
         <div className="min-h-screen bg-slate-50">
@@ -263,11 +270,24 @@ const UserCourses = () => {
 
             <main className="w-full px-4 md:px-10 py-12">
                 {displayCourses.length > 0 ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                        {displayCourses.map(course => (
-                            <CourseCard key={course._id} course={course} />
-                        ))}
-                    </div>
+                    <>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+                            {paginatedCourses.map(course => (
+                                <CourseCard key={course._id} course={course} />
+                            ))}
+                        </div>
+                        {hasMore && (
+                            <div className="mt-12 flex justify-center">
+                                <button
+                                    onClick={() => setVisibleCount(prev => prev + 8)}
+                                    className="px-8 py-3 bg-white border-2 border-slate-200 text-slate-600 font-bold rounded-xl hover:border-blue-600 hover:text-blue-600 hover:shadow-lg shadow-sm transition-all duration-300 flex items-center gap-2 group"
+                                >
+                                    <span>Load More Courses</span>
+                                    <FiArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                                </button>
+                            </div>
+                        )}
+                    </>
                 ) : (
                     <div className="bg-white rounded-3xl border border-dashed border-slate-300 py-32 text-center shadow-sm">
                         <div className="inline-flex items-center justify-center w-24 h-24 bg-slate-50 text-slate-300 rounded-full mb-8">
