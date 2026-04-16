@@ -10,42 +10,32 @@ import json
 from datetime import datetime
 
 # MongoDB Connection Configuration
-SOURCE_DB = "test"  # Your original database
-TARGET_DB = "khub_production"  # New database name
+SOURCE_DB = "k-hub"
+TARGET_DB = "test"
 
-# MongoDB Atlas connection string (replace with your actual credentials)
-MONGO_URI = "mongodb+srv://praveen:12345@cluster0.i4zpcov.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+# MongoDB URIs
+SOURCE_MONGO_URI = "mongodb://localhost:27017/"  # Local MongoDB
+TARGET_MONGO_URI = "mongodb+srv://pavan:RUi1uzQM2EQUlA9G@yearly-project.45f67.mongodb.net/?appName=yearly-project"
 
-# Collections to migrate (add/remove as needed)
-COLLECTIONS_TO_MIGRATE = [
-    "users",
-    "contests", 
-    "courses",
-    "enrollments",
-    "notifications",
-    "quizzes",
-    "quizattempts",
-    "submissions",
-    "tasks"
-]
+# Collections to migrate will be fetched dynamically
 
-def connect_to_mongodb():
+
+def connect_to_mongodb(uri, name):
     """Connect to MongoDB and return client"""
     try:
-        client = MongoClient(MONGO_URI)
-        # Test connection
+        client = MongoClient(uri)
         client.admin.command('ping')
-        print("✅ Connected to MongoDB Atlas successfully")
+        print(f"✅ Connected to {name} successfully")
         return client
     except Exception as e:
-        print(f"❌ Failed to connect to MongoDB: {e}")
+        print(f"❌ Failed to connect to {name}: {e}")
         return None
 
-def migrate_collection(client, collection_name):
+def migrate_collection(source_client, target_client, collection_name):
     """Migrate a single collection from source to target database"""
     try:
-        source_db = client[SOURCE_DB]
-        target_db = client[TARGET_DB]
+        source_db = source_client[SOURCE_DB]
+        target_db = target_client[TARGET_DB]
         
         source_collection = source_db[collection_name]
         target_collection = target_db[collection_name]
@@ -74,18 +64,20 @@ def migrate_collection(client, collection_name):
         # Migrate documents in batches
         batch_size = 1000
         migrated_count = 0
+        batch = []
         
         cursor = source_collection.find({})
-        
-        while True:
-            batch = list(cursor.limit(batch_size).skip(migrated_count))
-            if not batch:
-                break
-            
-            # Insert batch to target
+        for doc in cursor:
+            batch.append(doc)
+            if len(batch) >= batch_size:
+                target_collection.insert_many(batch)
+                migrated_count += len(batch)
+                batch = []
+                print(f"   📦 Migrated {migrated_count}/{source_count} documents")
+                
+        if batch:
             target_collection.insert_many(batch)
             migrated_count += len(batch)
-            
             print(f"   📦 Migrated {migrated_count}/{source_count} documents")
         
         # Verify migration
@@ -101,11 +93,11 @@ def migrate_collection(client, collection_name):
         print(f"❌ Error migrating {collection_name}: {e}")
         return False
 
-def copy_indexes(client, collection_name):
+def copy_indexes(source_client, target_client, collection_name):
     """Copy indexes from source to target collection"""
     try:
-        source_db = client[SOURCE_DB]
-        target_db = client[TARGET_DB]
+        source_db = source_client[SOURCE_DB]
+        target_db = target_client[TARGET_DB]
         
         source_collection = source_db[collection_name]
         target_collection = target_db[collection_name]
@@ -127,14 +119,14 @@ def copy_indexes(client, collection_name):
     except Exception as e:
         print(f"⚠️  Warning: Could not copy indexes for {collection_name}: {e}")
 
-def generate_migration_report(client):
+def generate_migration_report(source_client, target_client):
     """Generate a report comparing source and target databases"""
     print("\n" + "="*60)
     print("📊 MIGRATION REPORT")
     print("="*60)
     
-    source_db = client[SOURCE_DB]
-    target_db = client[TARGET_DB]
+    source_db = source_client[SOURCE_DB]
+    target_db = target_client[TARGET_DB]
     
     print(f"{'Collection':<20} {'Source':<10} {'Target':<10} {'Status'}")
     print("-" * 50)
@@ -142,7 +134,10 @@ def generate_migration_report(client):
     total_source = 0
     total_target = 0
     
-    for collection_name in COLLECTIONS_TO_MIGRATE:
+    # Fetch dynamic collections for report
+    collections_to_migrate = source_db.list_collection_names()
+    
+    for collection_name in collections_to_migrate:
         try:
             source_count = source_db[collection_name].count_documents({})
             target_count = target_db[collection_name].count_documents({})
@@ -162,27 +157,30 @@ def generate_migration_report(client):
     print(f"\nMigration {'✅ SUCCESSFUL' if total_source == total_target else '❌ INCOMPLETE'}")
 
 def main():
-    print("🚀 MongoDB Data Migration Tool")
-    print(f"📥 Source Database: {SOURCE_DB}")
-    print(f"📤 Target Database: {TARGET_DB}")
-    print(f"🔗 MongoDB URI: {MONGO_URI[:50]}...")
+    print("🚀 MongoDB Data Migration Tool (Local to Atlas)")
+    print(f"📥 Source Database: {SOURCE_DB} (Local)")
+    print(f"📤 Target Database: {TARGET_DB} (Atlas)")
     print()
     
-    # Connect to MongoDB
-    client = connect_to_mongodb()
-    if not client:
+    # Connect to MongoDB instances
+    source_client = connect_to_mongodb(SOURCE_MONGO_URI, "Local MongoDB")
+    if not source_client:
+        return
+        
+    target_client = connect_to_mongodb(TARGET_MONGO_URI, "Atlas MongoDB")
+    if not target_client:
         return
     
-    # List available databases
-    db_list = client.list_database_names()
-    print(f"📚 Available databases: {', '.join(db_list)}")
+    # List available databases on source
+    db_list = source_client.list_database_names()
+    print(f"📚 Available local databases: {', '.join(db_list)}")
     
     if SOURCE_DB not in db_list:
-        print(f"❌ Source database '{SOURCE_DB}' not found!")
+        print(f"❌ Source database '{SOURCE_DB}' not found locally!")
         return
     
     # Confirm migration
-    print(f"\n⚠️  This will migrate data from '{SOURCE_DB}' to '{TARGET_DB}'")
+    print(f"\n⚠️  This will migrate data from local '{SOURCE_DB}' to Atlas '{TARGET_DB}'")
     confirm = input("Continue? (y/N): ")
     if confirm.lower() != 'y':
         print("❌ Migration cancelled")
@@ -190,27 +188,33 @@ def main():
     
     print(f"\n🏁 Starting migration at {datetime.now()}")
     
+    # Fetch collections dynamically (ignoring system profile collections if any)
+    collections_to_migrate = [c for c in source_client[SOURCE_DB].list_collection_names() if not c.startswith('system.')]
+    
+    print(f"\n📂 Found {len(collections_to_migrate)} collections to migrate: {', '.join(collections_to_migrate)}")
+    
     # Migrate each collection
     successful_migrations = 0
     
-    for collection_name in COLLECTIONS_TO_MIGRATE:
+    for collection_name in collections_to_migrate:
         print(f"\n📂 Processing {collection_name}...")
         
-        if migrate_collection(client, collection_name):
-            copy_indexes(client, collection_name)
+        if migrate_collection(source_client, target_client, collection_name):
+            copy_indexes(source_client, target_client, collection_name)
             successful_migrations += 1
         else:
             print(f"❌ Failed to migrate {collection_name}")
     
     # Generate report
-    generate_migration_report(client)
+    generate_migration_report(source_client, target_client)
     
     print(f"\n🎉 Migration completed!")
-    print(f"✅ Successfully migrated: {successful_migrations}/{len(COLLECTIONS_TO_MIGRATE)} collections")
+    print(f"✅ Successfully migrated: {successful_migrations}/{len(collections_to_migrate)} collections")
     
     # Close connection
-    client.close()
-    print("🔐 Database connection closed")
+    source_client.close()
+    target_client.close()
+    print("🔐 Database connections closed")
 
 if __name__ == "__main__":
     try:
