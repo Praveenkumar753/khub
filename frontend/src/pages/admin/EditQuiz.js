@@ -47,6 +47,7 @@ const EditQuiz = () => {
 
     useEffect(() => {
         fetchQuizData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [quizId]);
 
     const fetchQuizData = async () => {

@@ -3,14 +3,12 @@ import { inquiryService } from '../../services';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 import { 
-    FiMail, 
     FiUser, 
     FiMessageSquare, 
     FiTrash2, 
     FiCheckCircle, 
     FiClock, 
     FiSearch, 
-    FiFilter,
     FiInbox,
     FiCornerUpRight
 } from 'react-icons/fi';

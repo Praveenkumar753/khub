@@ -383,6 +383,7 @@ const ModuleList = () => {
     };
 
     // Handle deleting task
+    // eslint-disable-next-line no-unused-vars
     const handleDeleteTask = async (taskId, taskTitle) => {
         if (window.confirm(`Are you sure you want to delete the task "${taskTitle}"? This will also delete all submissions and cannot be undone.`)) {
             try {
@@ -1775,6 +1776,7 @@ const ModuleTaskMarks = ({ moduleId, courseId }) => {
 
     useEffect(() => {
         fetchModuleTasks();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [moduleId, courseId]);
 
     const fetchModuleTasks = async () => {

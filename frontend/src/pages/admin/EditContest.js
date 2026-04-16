@@ -52,6 +52,7 @@ const EditContest = () => {
 
     useEffect(() => {
         fetchContest();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [contestId, navigate]); // Add navigate to dependencies
 
     const fetchContest = async () => {
@@ -147,6 +148,7 @@ const EditContest = () => {
         }));
     };
 
+    // eslint-disable-next-line no-unused-vars
     const addQuestion = () => {
         if (!currentQuestion.title.trim() || !currentQuestion.description.trim()) {
             toast.error('Please fill in question title and description');
