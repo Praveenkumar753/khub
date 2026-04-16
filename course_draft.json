@@ -1,0 +1,251 @@
+{
+    "course": {
+        "title": "Complete Python Masterclass",
+        "subtitle": "From Zero to Hero in Python Programming",
+        "description": "Learn Python programming from scratch. This comprehensive course covers variables, data structures, object-oriented programming, and real-world project development using Python.",
+        "thumbnail": "https://images.unsplash.com/photo-1526379095098-d400fd0bfce8",
+        "level": "beginner",
+        "prerequisites": ["No prior coding experience required"],
+        "learningObjectives": [
+            "Write basic and advanced Python scripts",
+            "Understand variables, loops, and conditions",
+            "Master Python data structures like lists, sets, and dictionaries",
+            "Build real-world applications using Object-Oriented principles"
+        ],
+        "duration": "6 Weeks",
+        "pricing": {
+            "isFree": true,
+            "price": 0,
+            "currency": "USD"
+        },
+        "isPublished": true,
+        "modules": [
+            {
+                "_id": "module_1",
+                "name": "Module 1: Getting Started with Python",
+                "mainTopics": [
+                    {
+                        "name": "1.1 Introduction and Setup",
+                        "description": "Installing Python and understanding the basics",
+                        "contents": [
+                            {
+                                "type": "youtube",
+                                "content": "INSERT_YOUTUBE_URL_HERE",
+                                "duration": "10:00"
+                            },
+                            {
+                                "type": "paragraph",
+                                "content": "Python is a high-level, interpreted programming language known for its readability and simplicity. In this video, we'll install Python and set up our development environment."
+                            },
+                            {
+                                "type": "heading",
+                                "content": "Your First Program"
+                            },
+                            {
+                                "type": "code",
+                                "content": "print('Hello, World!')"
+                            },
+                            {
+                                "type": "output",
+                                "content": "Hello, World!"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "1.2 Variables and Data Types",
+                        "description": "Working with numbers, strings, and booleans",
+                        "contents": [
+                            {
+                                "type": "youtube",
+                                "content": "INSERT_YOUTUBE_URL_HERE",
+                                "duration": "15:30"
+                            },
+                            {
+                                "type": "paragraph",
+                                "content": "Variables in Python act as containers for storing data values. You do not need to declare their type explicitly. Python will infer the type based on the value assigned."
+                            },
+                            {
+                                "type": "code",
+                                "content": "age = 25\nname = 'Alice'\nis_student = True\n\nprint(type(age))  # <class 'int'>\nprint(type(name)) # <class 'str'>"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "_id": "module_2",
+                "name": "Module 2: Control Flow",
+                "mainTopics": [
+                    {
+                        "name": "2.1 If, Elif, and Else Statements",
+                        "description": "Making decisions in code",
+                        "contents": [
+                            {
+                                "type": "youtube",
+                                "content": "INSERT_YOUTUBE_URL_HERE",
+                                "duration": "12:45"
+                            },
+                            {
+                                "type": "paragraph",
+                                "content": "Conditional statements allow your code to execute different blocks of logic depending on whether a condition is true or false."
+                            },
+                            {
+                                "type": "code",
+                                "content": "temperature = 30\nif temperature > 25:\n    print('It is a hot day')\nelif temperature > 15:\n    print('It is a nice day')\nelse:\n    print('It is cold')"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "2.2 For and While Loops",
+                        "description": "Repeating code blocks",
+                        "contents": [
+                            {
+                                "type": "youtube",
+                                "content": "INSERT_YOUTUBE_URL_HERE",
+                                "duration": "20:00"
+                            },
+                            {
+                                "type": "paragraph",
+                                "content": "Loops are used to repeat a block of code. 'For' loops are great for iterating over sequences, while 'while' loops execute as long as a condition is true."
+                            },
+                            {
+                                "type": "code",
+                                "content": "# For loop\nfor i in range(3):\n    print(i)\n\n# While loop\ncount = 0\nwhile count < 3:\n    print(count)\n    count += 1"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "_id": "module_3",
+                "name": "Module 3: Functions and Modules",
+                "mainTopics": [
+                    {
+                        "name": "3.1 Defining Functions",
+                        "description": "Creating reusable blocks of code",
+                        "contents": [
+                            {
+                                "type": "youtube",
+                                "content": "INSERT_YOUTUBE_URL_HERE",
+                                "duration": "18:20"
+                            },
+                            {
+                                "type": "paragraph",
+                                "content": "A function is a block of code which only runs when it is called. You can pass data, known as parameters, into a function."
+                            },
+                            {
+                                "type": "code",
+                                "content": "def greet(name):\n    return f'Hello, {name}!'\n\nmessage = greet('Alice')\nprint(message)"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "_id": "module_4",
+                "name": "Module 4: Advanced Data Structures",
+                "mainTopics": [
+                    {
+                        "name": "4.1 Lists, Dictionaries, and Sets",
+                        "description": "Storing complex data",
+                        "contents": [
+                            {
+                                "type": "youtube",
+                                "content": "INSERT_YOUTUBE_URL_HERE",
+                                "duration": "25:00"
+                            },
+                            {
+                                "type": "paragraph",
+                                "content": "Lists are ordered and changeable. Dictionaries hold key-value pairs. Sets are unordered and contain unique elements."
+                            },
+                            {
+                                "type": "code",
+                                "content": "# List\nfruits = ['apple', 'banana', 'cherry']\nfruits.append('orange')\n\n# Dictionary\nperson = {'name': 'Alice', 'age': 25}\nprint(person['name'])\n\n# Set\nnumbers = {1, 2, 2, 3}\nprint(numbers) # Output: {1, 2, 3}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "quizzes": [
+        {
+            "title": "Module 1 Assessment: Python Basics",
+            "description": "Test your knowledge of Python operators, syntax, and data types.",
+            "moduleId": "module_1",
+            "settings": {
+                "timeLimit": 5,
+                "allowMultipleAttempts": true,
+                "maxAttempts": 3,
+                "passingScore": 50
+            },
+            "questions": [
+                {
+                    "questionText": "What is the correct syntax to output 'Hello World' in Python?",
+                    "questionType": "mcq",
+                    "options": [
+                        { "text": "echo 'Hello World'", "isCorrect": false },
+                        { "text": "print('Hello World')", "isCorrect": true },
+                        { "text": "p('Hello World')", "isCorrect": false },
+                        { "text": "console.log('Hello World')", "isCorrect": false }
+                    ],
+                    "explanation": "Python uses the print() function to output data.",
+                    "points": 10
+                },
+                {
+                    "questionText": "Which data type is the result of: `type(True)`?",
+                    "questionType": "mcq",
+                    "options": [
+                        { "text": "str", "isCorrect": false },
+                        { "text": "int", "isCorrect": false },
+                        { "text": "bool", "isCorrect": true },
+                        { "text": "boolean", "isCorrect": false }
+                    ],
+                    "explanation": "In Python, the boolean data type is represented as 'bool'.",
+                    "points": 10
+                }
+            ]
+        },
+        {
+            "title": "Module 2 Assessment: Control Flow",
+            "description": "Test your logic with conditions and loops.",
+            "moduleId": "module_2",
+            "settings": {
+                "timeLimit": 10,
+                "allowMultipleAttempts": true,
+                "passingScore": 60
+            },
+            "questions": [
+                {
+                    "questionText": "Write a Python script that prints numbers from 1 to 5 using a while loop.",
+                    "questionType": "coding",
+                    "language": "python",
+                    "codeSnippet": "i = 1\n# Write your loop here\n",
+                    "points": 20
+                }
+            ]
+        }
+    ],
+    "tasks": [
+        {
+            "title": "Task 1: Build a Prime Number Checker",
+            "description": "Write a Python program that checks if a given number is prime or not.",
+            "moduleId": "module_2",
+            "instructions": "1. Prompt the user for an integer input.\n2. Use a loop to check if the number has any divisors other than 1 and itself.\n3. Print 'Prime' or 'Not Prime'.\n4. Handle edge cases like numbers less than 2.\n5. Upload your `prime_checker.py` file.",
+            "maxScore": 100,
+            "allowedFileTypes": ["python", "py", "txt", "zip"],
+            "maxFileSize": 2000000,
+            "isActive": true
+        },
+        {
+            "title": "Task 2: Inventory Management System",
+            "description": "Create a console-based application to manage store inventory using Dictionaries.",
+            "moduleId": "module_4",
+            "instructions": "1. Create a script that initializes an empty dictionary `inventory`. \n2. Provide a menu for the user: \n   A) Add item (name and quantity)\n   B) Update item quantity\n   C) View all items\n   D) Exit\n3. Implement the logic for each option using functions.\n4. Upload your `inventory.py` source code.",
+            "maxScore": 100,
+            "allowedFileTypes": ["python", "py", "zip"],
+            "maxFileSize": 5000000,
+            "isActive": true
+        }
+    ]
+}

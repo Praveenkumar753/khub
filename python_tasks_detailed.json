@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Task 1: Build a Prime Number Checker",
+        "description": "Write a Python program that checks if a given number is prime or not.",
+        "moduleId": "module_2",
+        "instructions": "1. Prompt the user for an integer input.\n2. Use a loop to check if the number has any divisors other than 1 and itself.\n3. Print 'Prime' or 'Not Prime'.\n4. Handle edge cases like numbers less than 2.\n5. Upload your `prime_checker.py` file.",
+        "maxScore": 100,
+        "allowedFileTypes": ["py", "txt", "zip"],
+        "maxFileSize": 2000000,
+        "isActive": true
+    },
+    {
+        "title": "Task 2: Inventory Management System",
+        "description": "Create a console-based application to manage store inventory using Dictionaries.",
+        "moduleId": "module_4",
+        "instructions": "1. Create a script that initializes an empty dictionary `inventory`. \n2. Provide a menu for the user: \n   A) Add item (name and quantity)\n   B) Update item quantity\n   C) View all items\n   D) Exit\n3. Implement the logic for each option using functions.\n4. Upload your `inventory.py` source code.",
+        "maxScore": 100,
+        "allowedFileTypes": ["py", "zip"],
+        "maxFileSize": 5000000,
+        "isActive": true
+    }
+]

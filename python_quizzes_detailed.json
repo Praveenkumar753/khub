@@ -1,0 +1,58 @@
+[
+    {
+        "title": "Module 1 Assessment: Python Basics",
+        "description": "Test your knowledge of Python operators, syntax, and data types.",
+        "moduleId": "module_1",
+        "settings": {
+            "timeLimit": 5,
+            "allowMultipleAttempts": true,
+            "maxAttempts": 3,
+            "passingScore": 50
+        },
+        "questions": [
+            {
+                "questionText": "What is the correct syntax to output 'Hello World' in Python?",
+                "questionType": "mcq",
+                "options": [
+                    { "text": "echo 'Hello World'", "isCorrect": false },
+                    { "text": "print('Hello World')", "isCorrect": true },
+                    { "text": "p('Hello World')", "isCorrect": false },
+                    { "text": "console.log('Hello World')", "isCorrect": false }
+                ],
+                "explanation": "Python uses the print() function to output data.",
+                "points": 10
+            },
+            {
+                "questionText": "Which data type is the result of: `type(True)`?",
+                "questionType": "mcq",
+                "options": [
+                    { "text": "str", "isCorrect": false },
+                    { "text": "int", "isCorrect": false },
+                    { "text": "bool", "isCorrect": true },
+                    { "text": "boolean", "isCorrect": false }
+                ],
+                "explanation": "In Python, the boolean data type is represented as 'bool'.",
+                "points": 10
+            }
+        ]
+    },
+    {
+        "title": "Module 2 Assessment: Control Flow",
+        "description": "Test your logic with conditions and loops.",
+        "moduleId": "module_2",
+        "settings": {
+            "timeLimit": 10,
+            "allowMultipleAttempts": true,
+            "passingScore": 60
+        },
+        "questions": [
+            {
+                "questionText": "Write a Python script that prints numbers from 1 to 5 using a while loop.",
+                "questionType": "coding",
+                "language": "python",
+                "codeSnippet": "i = 1\n# Write your loop here\n",
+                "points": 20
+            }
+        ]
+    }
+]

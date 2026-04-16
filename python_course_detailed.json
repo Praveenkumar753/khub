@@ -1,0 +1,264 @@
+{
+    "title": "Complete Python Masterclass",
+    "subtitle": "From Zero to Hero in Python Programming",
+    "description": "Learn Python programming from scratch. This comprehensive course covers everything from simple variables up to advanced object-oriented programming, memory management, and robust error handling.",
+    "thumbnail": "https://images.unsplash.com/photo-1526379095098-d400fd0bfce8",
+    "level": "beginner",
+    "prerequisites": ["No prior coding experience required"],
+    "learningObjectives": [
+        "Write basic and advanced Python scripts",
+        "Understand variables, loops, and conditions",
+        "Master Python data structures like lists, sets, and dictionaries",
+        "Build real-world applications using Object-Oriented principles",
+        "Implement advanced concepts like decorators, generators, and context managers"
+    ],
+    "duration": "8 Weeks",
+    "pricing": {
+        "isFree": true,
+        "price": 0,
+        "currency": "USD"
+    },
+    "isPublished": true,
+    "modules": [
+        {
+            "_id": "module_1",
+            "name": "Module 1: Python Architecture & Fundamentals",
+            "mainTopics": [
+                {
+                    "name": "1.1 Introduction to Python and its Ecosystem",
+                    "description": "Deep dive into what makes Python unique, memory basics, and environment setup.",
+                    "contents": [
+                        {
+                            "type": "youtube",
+                            "content": "INSERT_YOUTUBE_URL_HERE",
+                            "duration": "15:00"
+                        },
+                        {
+                            "type": "heading",
+                            "content": "What is Python?"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "Python is a high-level, interpreted programming language created by Guido van Rossum and first released in 1991. The language's core design philosophy emphasizes code readability and straightforward syntax, making it highly accessible for beginners, while retaining the power needed for complex scientific computing, web development, and artificial intelligence applications."
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "Unlike compiled languages like C or C++, Python code is translated into bytecode before being executed by a virtual machine (the Python Virtual Machine, or PVM). This means you don't need to rebuild your code every time you make a change, speeding up the development cycle at the cost of some execution speed."
+                        },
+                        {
+                            "type": "heading",
+                            "content": "Setting up the Environment"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "To get started, you will need to install the Python interpreter. You can download it directly from python.org. Once installed, you can verify your installation by opening a terminal or command prompt and typing the following command:"
+                        },
+                        {
+                            "type": "syntax",
+                            "content": "python --version"
+                        },
+                        {
+                            "type": "output",
+                            "content": "Python 3.10.2 (or your installed version)"
+                        },
+                        {
+                            "type": "heading",
+                            "content": "The Python REPL"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "REPL stands for Read, Evaluate, Print, Loop. It is an interactive shell where you can type Python code and instantly see the result. This is incredibly useful for testing small snippets of code quickly."
+                        },
+                        {
+                            "type": "code",
+                            "content": ">>> print('Hello, World!')\nHello, World!\n>>> 5 + 7\n12"
+                        }
+                    ]
+                },
+                {
+                    "name": "1.2 Deep Dive: Variables, References, and Data Types",
+                    "description": "Understanding strong typing, dynamic typing, and memory references in Python.",
+                    "contents": [
+                        {
+                            "type": "youtube",
+                            "content": "INSERT_YOUTUBE_URL_HERE",
+                            "duration": "25:00"
+                        },
+                        {
+                            "type": "heading",
+                            "content": "Dynamic Typing vs Static Typing"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "Python is dynamically typed. This means you do not need to explicitly declare the data type of a variable when you start using it. The Python interpreter infers the data type based on the value assigned."
+                        },
+                        {
+                            "type": "code",
+                            "content": "user_age = 25          # Inferred as Integer\nuser_name = 'Alice'    # Inferred as String\nis_active = True       # Inferred as Boolean\n\n# We can even change the type later (though not always recommended)\nuser_age = 'Twenty Five'"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "However, Python is also 'Strongly Typed'. This means that once a variable is of a specific type, Python will not automatically implicitly coerce it into a different type for an operation. For instance, you cannot add a string and an integer together without manually converting one of them."
+                        },
+                        {
+                            "type": "code",
+                            "content": "age = 25\nmessage = 'I am ' + age + ' years old'  # This will throw a TypeError!"
+                        },
+                        {
+                            "type": "output",
+                            "content": "TypeError: can only concatenate str (not \"int\") to str"
+                        },
+                        {
+                            "type": "heading",
+                            "content": "Variables as Memory References"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "In Python, variables are not buckets that hold data. Instead, they are labels or references pointing to objects in memory. When you assign a variable to another variable, they both point to the exact same object in the computer's memory space."
+                        },
+                        {
+                            "type": "code",
+                            "content": "a = [1, 2, 3]\nb = a\n\nb.append(4)\n\nprint(a)  # Output will be [1, 2, 3, 4] because 'a' and 'b' share the same memory reference!"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "_id": "module_2",
+            "name": "Module 2: Advanced Control Flow & Logic",
+            "mainTopics": [
+                {
+                    "name": "2.1 Complex Conditionals and Truthiness",
+                    "description": "Understanding deeper logic evaluation and the concept of Truthy and Falsy values.",
+                    "contents": [
+                        {
+                            "type": "youtube",
+                            "content": "INSERT_YOUTUBE_URL_HERE",
+                            "duration": "22:00"
+                        },
+                        {
+                            "type": "heading",
+                            "content": "Beyond simple If/Else"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "While standard logical operators (<, >, ==, !=) evaluate to True or False directly, Python introduces the concept of implicit boolean evaluation, known as 'Truthiness'."
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "In Python, ALL values are considered 'Truthy' except for the following 'Falsy' values:\n1. None\n2. False\n3. Zero of any numeric type (0, 0.0)\n4. Empty sequences and collections ('', [], {}, set(), tuple())"
+                        },
+                        {
+                            "type": "code",
+                            "content": "user_input = ''\n\nif user_input:\n    print('User typed something')\nelse:\n    print('User pressed enter without typing')\n\n# Because user_input is an empty string, it evaluates to False automatically."
+                        },
+                        {
+                            "type": "heading",
+                            "content": "Ternary Operators"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "For simple conditional assignments, Python supports conditional expressions known as ternary operators. They follow the syntax: [Value If True] if [Condition] else [Value If False]"
+                        },
+                        {
+                            "type": "code",
+                            "content": "age = 20\nstatus = 'Adult' if age >= 18 else 'Minor'\nprint(status)"
+                        },
+                        {
+                            "type": "output",
+                            "content": "Adult"
+                        }
+                    ]
+                },
+                {
+                    "name": "2.2 Iteration: For, While, and List Comprehensions",
+                    "description": "Mastering looping mechanics and Pythonic iteration patterns.",
+                    "contents": [
+                        {
+                            "type": "youtube",
+                            "content": "INSERT_YOUTUBE_URL_HERE",
+                            "duration": "28:15"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "Python's standard `for` loop behaves like an iterator loop 'forEach' found in other languages. It iterates over the items of any sequence in the order they appear."
+                        },
+                        {
+                            "type": "code",
+                            "content": "users = ['Admin', 'Editor', 'Viewer']\n\nfor index, user in enumerate(users):\n    print(f'User {index + 1}: {user}')"
+                        },
+                        {
+                            "type": "heading",
+                            "content": "List Comprehensions"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "List comprehensions provide a concise and highly optimized way to create lists. They consist of brackets containing an expression followed by a 'for' clause, and optionally 'if' clauses."
+                        },
+                        {
+                            "type": "code",
+                            "content": "# Traditional loop to square numbers\nsquares = []\nfor x in range(10):\n    if x % 2 == 0:\n        squares.append(x**2)\n\n# Pythonic List Comprehension equivalent\nsquares_comp = [x**2 for x in range(10) if x % 2 == 0]\n\nprint(squares_comp)"
+                        },
+                        {
+                            "type": "output",
+                            "content": "[0, 4, 16, 36, 64]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "_id": "module_3",
+            "name": "Module 3: Functions, Scope, and Advanced Arguments",
+            "mainTopics": [
+                {
+                    "name": "3.1 Functions and Variable Scope (LEGB)",
+                    "description": "Understanding how Python resolves variable names.",
+                    "contents": [
+                        {
+                            "type": "youtube",
+                            "content": "INSERT_YOUTUBE_URL_HERE",
+                            "duration": "20:45"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "Functions allow us to encapsulate code into reusable units. But what happens when you use variables inside them? Python uses the LEGB rule for scoping: Local, Enclosing, Global, and Built-in."
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "- **Local**: Names assigned inside the current function.\n- **Enclosing**: Names inside any and all enclosing functions (like nested closures).\n- **Global**: Names assigned at the top-level of a module file.\n- **Built-in**: Names pre-assigned in Python (like len(), max())."
+                        },
+                        {
+                            "type": "code",
+                            "content": "x = 'Global X'\n\ndef outer_function():\n    x = 'Enclosing X'\n    \n    def inner_function():\n        x = 'Local X'\n        print(x)\n        \n    inner_function()\n\nouter_function()  # Prints 'Local X'"
+                        }
+                    ]
+                },
+                {
+                    "name": "3.2 *args and **kwargs",
+                    "description": "Handling infinite parameters dynamically.",
+                    "contents": [
+                        {
+                            "type": "youtube",
+                            "content": "INSERT_YOUTUBE_URL_HERE",
+                            "duration": "16:10"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "Often you don't know exactly how many arguments will be passed to your function. Python provides syntaxes to catch all positional and keyword arguments: `*args` and `**kwargs`."
+                        },
+                        {
+                            "type": "code",
+                            "content": "def execute_command(command_name, *args, **kwargs):\n    print(f'Command: {command_name}')\n    print('Positional arguments:', args)\n    print('Keyword arguments:', kwargs)\n\nexecute_command('RUN', 1, 2, 3, timeout=30, force=True)"
+                        },
+                        {
+                            "type": "output",
+                            "content": "Command: RUN\nPositional arguments: (1, 2, 3)\nKeyword arguments: {'timeout': 30, 'force': True}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
